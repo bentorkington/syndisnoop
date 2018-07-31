@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Syndication Snoop Settings</title>
+    <style>
+        body {
+            min-width: 500px;
+        }
+        textarea {
+            width: 95%;
+        }
+        .setting-section {
+            margin: 0.5em;
+            border: 1px solid gray;
+        }
+        .setting-header {
+            background: #cccccc;
+            padding: 0.4em;
+        }
+        #status {
+            height: 12pt;
+        }
+        .column {
+            float: left;
+            width: 50%;
+        }
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="row">
+        <div class="column">
+            <div class="setting-section">
+                <div class="setting-header">Mute authors</div>
+                <div style="padding: 0.4em">Names of authors to mute, one per line</div>
+                <textarea id="mutedAuthors" style="margin: 0.5em;" rows=5 spellcheck="false"></textarea>
+            </div>
+            <div class="setting-section" id="frontPageSectionHide">
+                <div class="setting-header">Hide front page sections
+                    <span style="text-align: right; font-size: 8pt;">                    
+                        <a href="javascript:void" id="sectionsSetAll">set</a>|<a href="javascript:void" id="sectionsClearAll">clear</a>
+                    </span>
+                </div>
+                <div style="padding: 0.5em;">
+                    <div>
+                        <input type="checkbox" data-section-name="focusVideo">NZH Focus videos</input>
+                    </div>
+                    <div>
+                        <input type="checkbox" data-section-name="latestVideo">Latest Video</input>
+                    </div>
+                    <div>
+                        <input type="checkbox" data-section-name="brandInsight">Brand Insight</input>
+                    </div>
+                    <div>
+                        <input type="checkbox" data-section-name="opinion">Opinion</input>
+                    </div>
+                    <div>
+                        <input type="checkbox" data-section-name="motoring">Motoring News</input>
+                    </div>
+                    <div>
+                        <input type="checkbox" data-section-name="movies">Movies</input>
+                    </div>
+                    <div>
+                        <input type="checkbox" data-section-name="watchMe">WatchMe</input>
+                    </div>
+                    <div>
+                        <input type="checkbox" data-section-name="spy">spy.co.nz</input>
+                    </div>
+                    <div>
+                        <input type="checkbox" data-section-name="viva">Viva</input>
+                    </div>
+                    <div>
+                        <input type="checkbox" data-section-name="bite">Bite</input>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="setting-section">
+                <div class="setting-header">Syndication tagging</div>
+        
+                <div style="padding: 0.5em">Warning style:
+                    <select id="warningtype">
+                        <option value="yellow">Red and yellow</option>
+                        <option value="greyfloat">Grey background</option>
+                    </select>
+                </div>
+            </div>
+            <div class="setting-section">
+                <div class="setting-header">Remove distracting content</div>
+                <div style="padding: 0.5em">
+                    <div>
+                        <input type="checkbox" id="removeArticleRelated">Related articles</input>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="removeArticleAds">Mid-article advertisements</input>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="removeGiphy">GIPHY embeds</input>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="removeOutbrain">Outbrain (fake/harmful content)</input>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="setting-section">
+                <div class="setting-header">Autoplay settings</div>
+                <div style="padding: 0.5em">
+                    <div>
+                        <input type="checkbox" id="neverAutoPlay">Never auto play videos</input>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="status"></div>
+    <button id="save">Save</button>
+    <script src="options.js"></script>
+</body>
+
+</html>
