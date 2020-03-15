@@ -1,3 +1,4 @@
 
 /obfuscated/*
 /dist/*
+.DS_Store
