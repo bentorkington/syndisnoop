@@ -15,6 +15,7 @@ function save_options() {
         'mutedAuthors': mutes,
         'removeOutbrain': document.getElementById('removeOutbrain').checked,
         'frontPageSectionHide': frontPageSectionHide,
+        'sillyStuff': document.getElementById('sillyStuff').checked,
     }, function() {
         // Update status to let user know options were saved
         var status = document.getElementById('status');
@@ -37,6 +38,7 @@ function restore_options() {
         'frontPageSectionHide': [ ],
         'licenceValid': false,
         'licenceType': "",
+        'sillyStuff': false,
     }, function(items) {
         document.getElementById('warningtype').value = items.warningStyle;
         document.getElementById('removeGiphy').checked = items.removeGiphy;
@@ -45,6 +47,7 @@ function restore_options() {
         document.getElementById('neverAutoPlay').checked = items.neverAutoPlay;
         document.getElementById('mutedAuthors').value = items.mutedAuthors.join('\n');
         document.getElementById('removeOutbrain').checked = items.removeOutbrain;
+        document.getElementById('sillyStuff').checked = items.sillyStuff;
         Array.from(document.getElementById('frontPageSectionHide').getElementsByTagName('input')).forEach(x => x.checked = (items.frontPageSectionHide.indexOf(x.getAttribute('data-section-name')) > -1));
 
         var status = document.getElementById('status');

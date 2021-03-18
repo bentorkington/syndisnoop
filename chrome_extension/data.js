@@ -37,13 +37,3 @@ var frontPageSectionTitles = {
     viva: 'Trending on Viva',
     bite: 'Latest from Bite',
 };
-
-expect(opiners.match("Heather du Plessis-Allan")).to.be.true;
-expect(opiners.match("Heather Du Plessis-Allan")).to.be.true;
-expect(opiners.match("Heather du Plessis Allan")).to.be.true;
-expect(opiners.match("Heather Du Plessis Allan")).to.be.true;
-expect(opiners.match("Heather du Plessis-Allen")).to.be.true;
-expect(opiners.match("Heather Du Plessis-Allen")).to.be.true;
-expect(opiners.match("Heather du Plessis Allen")).to.be.true;
-expect(opiners.match("Heather Du Plessis Allen")).to.be.true;
-

@@ -17,10 +17,24 @@ chrome.storage.sync.get({
     removeArticleAds: 'true',
     neverAutoPlay: 'false',
     removeOutbrain: 'true', 
+    sillyStuff: false,
 }, function(items) {
     style = items.warningStyle;
 
     var articleSection = document.getElementById("article-content");
+
+    if (items.sillyStuff) {
+        var mikes = Array.from(articleSection.getElementsByTagName('p'));
+        mikes.forEach((mike) => {
+            if (mike.innerText.match(/^(I|My|Our)\s/)) {
+                console.log(mike.innerText);
+                let newText = mike.innerText;
+                newText = newText.replace(/^My\w/, 'my');
+                newText = newText.replace(/^Our\w/, 'our');
+                mike.innerText = `Now I'm no expert, but ${newText}`;
+            }
+        });    
+    }
 
     if(items.removeArticleRelated) 
         articleSection.children.filter(x => x.classList.contains('pb-f-article-related-articles')).forEach(x => articleSection.removeChild(x));
