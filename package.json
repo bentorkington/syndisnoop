@@ -1,0 +1,26 @@
+{
+  "name": "syndisnoop",
+  "version": "0.15.8",
+  "description": "A browser plugin to help reading nzherald.co.nz",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bentorkington/syndisnoop.git"
+  },
+  "keywords": [
+    "nzherald",
+    "herald",
+    "news",
+    "syndication",
+    "clickbait"
+  ],
+  "author": "Ben Torkington <ben@torkington.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bentorkington/syndisnoop/issues"
+  },
+  "homepage": "https://github.com/bentorkington/syndisnoop#readme"
+}
