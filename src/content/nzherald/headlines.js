@@ -158,9 +158,7 @@ function scanPage() {
     // logoWrapper.setAttribute('style', 'text-align: center; margin: 2px; color: #ccc;');
     // logoWrapper.insertBefore(syndiLogoWrapper, logoWrapper.children[3]);
 
-
-
-    const premiumToaster = document.querySelector('div.premium-toaster');
+    const premiumToaster = document.querySelector('div#premium-toaster');
     if (premiumToaster) {
       premiumToaster.remove();
     }
