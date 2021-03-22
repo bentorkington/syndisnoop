@@ -16,9 +16,6 @@
 				"*://*.nzherald.co.nz/"
 			],
 			"js": [
-				"data.js",
-				"lib/lib.js",
-				"lib/nzh.js",
 				"headlines.js"
 			],
 			"run-at": "document_start"
@@ -28,9 +25,6 @@
 				"*://www.nzherald.co.nz/*/article.cfm*"
 			],
 			"js" :[
-				"data.js",
-				"lib/lib.js",
-				"lib/nzh.js",
 				"articlePage.js"
 			],
 			"run-at": "document_start"
@@ -38,10 +32,10 @@
 	],
 	"permissions": [ "storage", "cookies", "*://*.nzherald.co.nz/*" ],
 	"options_ui": {
-		"page": "options.html",
+		"page": "index.html",
 		"chrome_style": true
 	},
 	"web_accessible_resources": [
-		"icon_16.png"
+		"icon_48.png"
 	]
 }

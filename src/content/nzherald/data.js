@@ -1,5 +1,5 @@
 
-var syndicators = [
+export const syndicators = [
     { name: "news.com.au", bias: 5 },
     { name: "Daily Mail", bias: 5 },        // sometimes not directly credited, but with hyperlink
     { name: "Daily Telegraph", bias: 5 },
@@ -15,7 +15,7 @@ var syndicators = [
     { name: "CATERS", bias: 5 },
 ];
 
-var opiners = [
+export const opiners = [
     { name: "Barry Soper", tag: "Barely Sober", nick: "Baz" },
     { name: "Rachel Smalley", tag: "Smalley", nick: "Rach" },
     { name: "Mike Hosking", tag: "Hoskby", nick: "Hosk" },
@@ -25,7 +25,7 @@ var opiners = [
     { name: "Deborah Hill Cone", tag: "DHC", nick: "DHC" },
     ];
 
-var frontPageSectionTitles = {
+export const frontPageSectionTitles = {
     focusVideo: 'NZ Herald Focus and Local Focus videos',
     latestVideo: 'Latest Video',
     brandInsight: 'Brand Insight',

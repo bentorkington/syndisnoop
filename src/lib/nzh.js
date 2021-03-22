@@ -1,6 +1,6 @@
 
 
-function insert6Warning (article, syndicator) {
+export function insert6Warning (article, syndicator) {
     var synNode = document.createTextNode(syndicator);
     var synPara = document.createElement("span");
 
@@ -26,7 +26,7 @@ function insert6Warning (article, syndicator) {
     }
 }
 
-function insert6HeroWarning (article, syndicator) {
+export function insert6HeroWarning (article, syndicator) {
     var synNode = document.createTextNode(syndicator);
     var synPara = document.createElement("span");
 
@@ -51,7 +51,7 @@ function insert6HeroWarning (article, syndicator) {
     }
 }
 
-function NewArticle6(rootElement, theRequest) {
+export function NewArticle6(rootElement, theRequest) {
     this.element = rootElement;
     this.request = theRequest;
     this.headline = rootElement.getElementsByClassName("headline")[0].children[1];
@@ -68,7 +68,7 @@ function NewArticle6(rootElement, theRequest) {
     this.warningFunc = insert6Warning;
 }
 
-function NewArticleHero(rootElement, theRequest) {
+export function NewArticleHero(rootElement, theRequest) {
     this.element = rootElement;
     this.request = theRequest;
 
@@ -93,7 +93,7 @@ function NewArticleHero(rootElement, theRequest) {
 }
 
 
-function checkSyndicator(article, articleDoc, syndicator, callback) {
+export function checkSyndicator(article, articleDoc, syndicator, callback) {
     if (syndicator != null)
     {
         var syntext = syndicator.innerHTML;

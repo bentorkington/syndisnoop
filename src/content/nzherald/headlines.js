@@ -1,3 +1,5 @@
+import * as nzh from '../../lib/nzh';
+import {forEachNode} from '../../lib/lib';
 
 function makeHttpObject() {
     try { return new XMLHttpRequest(); }
@@ -133,28 +135,53 @@ var articleStore = [];
 var lavaStore = [];
 
 function scanPage() {
-    var navBar = document.getElementById("nav");
-
-    var logoWrapper = navBar.getElementsByClassName("site-logo-wrapper")[0];
+    var navBar = document.querySelector("header");
+    const mast = navBar.querySelector('div.header__search');
 
     var syndiSnoopName = document.createElement('div');
     syndiSnoopName.classList.add('site-text', 'site-name');
     syndiSnoopName.appendChild(document.createTextNode("with SyndiSnoop"));
-    syndiSnoopName.setAttribute('style', 'text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;')
+    syndiSnoopName.setAttribute('style', 'color: #ccc;')
 
 
     var syndiLogoWrapper = document.createElement("div");
     var syndiLogoImage = document.createElement("img");
-    var syndiLogo = chrome.extension.getURL("icon_16.png");
+
+    var syndiLogo = chrome.extension.getURL("icon_48.png");
     syndiLogoImage.attributes.src = syndiLogo;
     syndiLogoImage.setAttribute('src', syndiLogo);
-    syndiLogoImage.setAttribute('style', 'height: 32px;');
+    syndiLogoImage.setAttribute('style', 'height: 32px; color: #ccc');
+
+
 
     syndiLogoWrapper.appendChild(syndiSnoopName);
-    syndiLogoWrapper.appendChild(syndiLogoImage);
 
-    logoWrapper.setAttribute('style', 'text-align: center; margin: 2px; color: #ccc;');
-    logoWrapper.insertBefore(syndiLogoWrapper, logoWrapper.children[3]);
+    navBar.insertBefore(syndiLogoImage, mast);
+    navBar.insertBefore(syndiLogoWrapper, mast);
+
+    // logoWrapper.setAttribute('style', 'text-align: center; margin: 2px; color: #ccc;');
+    // logoWrapper.insertBefore(syndiLogoWrapper, logoWrapper.children[3]);
+
+
+
+    const premiumToaster = document.querySelector('div.premium-toaster');
+    if (premiumToaster) {
+      premiumToaster.remove();
+    }
+
+    const mo = new MutationObserver((mutations, observer)  => {
+      for (const mutation of mutations) {
+        if (mutation.type === 'childList') {
+          // a child has been added or removed
+          //syndilog(mutation);
+        }
+        else if (mutation.type === 'attributes') {
+          // an attribute was modified
+        }
+      }
+    });
+
+    mo.observe(document, {attributes: true, childList: true, subtree: true});
 
     processNew();
 }
@@ -206,6 +233,10 @@ function queueArticle(article) {
     }
 }
 
+function syndilog(message) {
+  console.log('syndisnoop:', message);
+}
+
 function processNew() {
     var hero = document.getElementById("main").getElementsByClassName("story-hero");
 
@@ -216,12 +247,26 @@ function processNew() {
     //mo.observe(breakingBanner, { childList: true, subtree: true});
 
     // slug-less headlines   
-    var col_md6 = document.getElementsByClassName("pb-f-homepage-story");
+    var articles = document.getElementsByTagName('article');
     var feed = document.getElementsByClassName("pb-f-homepage-story-feed"); 
 
-    forEachNode(hero, function(article) { queueHero(article); });
-    forEachNode(col_md6, function(article) { queueArticle(article); });
-    forEachNode(feed, function(article) { queueArticle(article); });
+    const observer = new IntersectionObserver((entries) => {
+      entries.filter((e) => e.isIntersecting).forEach((e) => {
+        const t = e.target;
+        try {
+          const headline = t.querySelector('.story-card__heading').innerText;
+          const link = t.querySelector('a.story-card__heading__link').href;
+          // syndilog({headline, link});  
+        }
+        catch(err) {
+          syndilog(`failed to parse intersection result`);
+          syndilog(t);
+        }
+      })
+    }, { root: null });
+
+
+    Array.from(articles).forEach(e => observer.observe(e));
 
     setTimeout(function() {
     // var bayleys = findBaileys();
