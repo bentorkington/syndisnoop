@@ -1,5 +1,6 @@
 import * as nzh from '../../lib/nzh';
 import {forEachNode} from '../../lib/lib';
+import browser from 'webextension-polyfill';
 
 function makeHttpObject() {
     try { return new XMLHttpRequest(); }
@@ -111,24 +112,21 @@ function findFocus(heading) {
     return Array.from(document.getElementsByTagName('h3')).filter(e => e.innerText == heading)[0].parentNode.parentNode.parentNode;
 }
 
-console.log(chrome.storage);
-
 var warningStyle;
 var mutedAuthors;
 var frontPageSectionHide;
 // read settings
-chrome.storage.sync.get({
+const prom = browser.storage.sync.get({
     warningStyle: "greyfloat",
     mutedAuthors: [ ],
     frontPageSectionHide: [ ],
     licensed: false,
-}, function (items) {
-    warningStyle = items.warningStyle;
-    mutedAuthors = items.mutedAuthors.filter(name => name.length > 0).map(name => name.toUpperCase());
-    frontPageSectionHide = items.frontPageSectionHide;
-    if (true) {
-        scanPage();
-    }
+}).then((items) => {
+  warningStyle = items.warningStyle;
+  mutedAuthors = items.mutedAuthors.filter(name => name.length > 0).map(name => name.toUpperCase());
+  frontPageSectionHide = items.frontPageSectionHide;
+
+  scanPage();
 })
 
 var articleStore = [];
@@ -151,8 +149,6 @@ function scanPage() {
     syndiLogoImage.attributes.src = syndiLogo;
     syndiLogoImage.setAttribute('src', syndiLogo);
     syndiLogoImage.setAttribute('style', 'height: 32px; color: #ccc');
-
-
 
     syndiLogoWrapper.appendChild(syndiSnoopName);
 
