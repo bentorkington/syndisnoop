@@ -1,5 +1,5 @@
 import * as nzh from '../../lib/nzh';
-import {forEachNode} from '../../lib/lib';
+import {forEachNode, syndilog} from '../../lib/lib';
 import browser from 'webextension-polyfill';
 
 function makeHttpObject() {
@@ -229,10 +229,6 @@ function queueArticle(article) {
     catch (err) {
         console.log("Exception building NewArticle6: " + err);
     }
-}
-
-function syndilog(message) {
-  console.log('syndisnoop:', message);
 }
 
 function processNew() {

@@ -24,3 +24,7 @@ export function getMonthFromString(str) {
     // see http://stackoverflow.com/questions/13566552/easiest-way-to-convert-month-name-to-month-number-in-js-jan-01
     return new Date(Date.parse(str + " 1, 2017")).getMonth();
 }
+
+export function syndilog(message) {
+  console.log('syndisnoop:', message);
+}

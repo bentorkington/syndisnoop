@@ -1,3 +1,4 @@
+import {syndilog} from '../../lib/lib';
 
 function insertArticleHeaderWarning(page, warningElement)
 {
@@ -7,19 +8,20 @@ function insertArticleHeaderWarning(page, warningElement)
     }
 }
 
-function syndilog(message) {
-  console.log('syndisnoop:', message);
-}
-
-
 var style;
 
-console.log("I'm running!");
+syndilog("nzherald/articlePage running");
 
 const toaster = document.querySelector('div#premium-toaster');
 if (toaster) {
-  syndilog('already added');
+  syndilog('premium-toaster already added, removing');
   toaster.remove();
+}
+
+const vcNever = document.querySelector('div#vcNever');
+if (vcNever) {
+  syndilog('found a never-play button, clicking it');
+  setTimeout(1000, () => {vcNever.click()});
 }
 
 const mo = new MutationObserver((mutations, observer)  => {
@@ -28,7 +30,7 @@ const mo = new MutationObserver((mutations, observer)  => {
       mutation.addedNodes.forEach((node) => {
         if (node instanceof HTMLElement) {
           if (node.getAttribute('id') === 'premium-toaster') {
-            syndilog('removed premium-toaster');
+            syndilog('premium-toaster added dynamically, removing');
             node.remove();
           }  
         }
