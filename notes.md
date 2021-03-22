@@ -20,3 +20,7 @@ https://www.nzherald.co.nz/lifestyle/news/article.cfm?c_id=6&objectid=12339170
 
 https://www.nzherald.co.nz/world/news/article.cfm?c_id=2&objectid=12338954
 
+### Subscription toaster
+
+is a div#premium-toaster added to body.nzh > div#fusion-app > div.container
+

@@ -172,8 +172,12 @@ function scanPage() {
     const mo = new MutationObserver((mutations, observer)  => {
       for (const mutation of mutations) {
         if (mutation.type === 'childList') {
-          // a child has been added or removed
-          //syndilog(mutation);
+          mutation.addedNodes.forEach((node) => {
+            if (node.getAttribute('id') === 'premium-toaster') {
+              syndilog('removed premium-toaster');
+              node.remove();
+            }
+          })
         }
         else if (mutation.type === 'attributes') {
           // an attribute was modified

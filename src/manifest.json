@@ -22,7 +22,7 @@
 		},
 		{
 			"matches" : [
-				"*://www.nzherald.co.nz/*/article.cfm*"
+				"*://www.nzherald.co.nz/*/*/*"
 			],
 			"js" :[
 				"articlePage.js"

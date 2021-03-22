@@ -7,7 +7,40 @@ function insertArticleHeaderWarning(page, warningElement)
     }
 }
 
+function syndilog(message) {
+  console.log('syndisnoop:', message);
+}
+
+
 var style;
+
+console.log("I'm running!");
+
+const toaster = document.querySelector('div#premium-toaster');
+if (toaster) {
+  syndilog('already added');
+  toaster.remove();
+}
+
+const mo = new MutationObserver((mutations, observer)  => {
+  for (const mutation of mutations) {
+    if (mutation.type === 'childList') {
+      mutation.addedNodes.forEach((node) => {
+        if (node instanceof HTMLElement) {
+          if (node.getAttribute('id') === 'premium-toaster') {
+            syndilog('removed premium-toaster');
+            node.remove();
+          }  
+        }
+      })
+    }
+    else if (mutation.type === 'attributes') {
+      // an attribute was modified
+    }
+  }
+});
+
+mo.observe(document, {attributes: true, childList: true, subtree: true});
 
 // read settings - this doesn't work right now
 chrome.storage.sync.get({
@@ -22,19 +55,6 @@ chrome.storage.sync.get({
     style = items.warningStyle;
 
     var articleSection = document.getElementById("article-content");
-
-    if (items.sillyStuff) {
-        var mikes = Array.from(articleSection.getElementsByTagName('p'));
-        mikes.forEach((mike) => {
-            if (mike.innerText.match(/^(I|My|Our)\s/)) {
-                console.log(mike.innerText);
-                let newText = mike.innerText;
-                newText = newText.replace(/^My\w/, 'my');
-                newText = newText.replace(/^Our\w/, 'our');
-                mike.innerText = `Now I'm no expert, but ${newText}`;
-            }
-        });    
-    }
 
     if(items.removeArticleRelated) 
         articleSection.children.filter(x => x.classList.contains('pb-f-article-related-articles')).forEach(x => articleSection.removeChild(x));
